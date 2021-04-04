@@ -435,6 +435,10 @@ body {
   display: block;
 }
 
+.export-trigger:hover {
+  cursor: pointer;
+}
+
 .arrow {
   border: solid;
   border-color: var(--page-color);

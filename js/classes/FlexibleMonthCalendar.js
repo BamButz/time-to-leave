@@ -17,6 +17,7 @@ const { showDialog } = require('../window-aux.js');
 const { getDayAbbr } = require('../date-to-string-util.js');
 const { BaseCalendar } = require('./BaseCalendar.js');
 const i18n = require('../../src/configs/i18next.config.js');
+const { clipboard } = require('electron');
 
 class FlexibleMonthCalendar extends BaseCalendar
 {
@@ -224,7 +225,7 @@ class FlexibleMonthCalendar extends BaseCalendar
                 '<div class="sign-cell plus-sign">' +
                     '<span>+</span>' +
                 '</div>' +
-                '<div class="day-total-cell">' +
+                '<div class="day-total-cell export-trigger">' +
                     '<div class="day-total"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></div>' +
                 '</div>' +
                 '</div>\n';
@@ -271,6 +272,21 @@ class FlexibleMonthCalendar extends BaseCalendar
             const dayId = $(this).siblings().closest('.time-cells').attr('id');
             const waiverDay = formatDayId(dayId);
             displayWaiverWindow(waiverDay);
+        });
+
+        $('.export-trigger').off('click').on('click', function()
+        {
+            const dayId = $(this).siblings().closest('.time-cells').attr('id');
+            const formattedDate = formatDayId(dayId);
+            const dayTotal = $(this).find('.day-total span').html();
+
+            if (dayTotal === '')
+            {
+                return;
+            }
+
+            clipboard.writeText(formattedDate + '\t' + dayTotal);
+            console.log('Hello World');
         });
     }
 
