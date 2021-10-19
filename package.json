@@ -33,7 +33,7 @@
     "start": "electron .",
     "test": "npm-run-all test:*",
     "test:jest": "jest --runInBand --detectOpenHandles --verbose --colors",
-    "test:mocha": "nyc --reporter=lcov --reporter=json mocha tests/*"
+    "test:mocha": "xvfb-maybe --server-args=\"-screen 0 1024x768x24\" -- nyc --reporter=lcov --reporter=json mocha tests/*"
   },
   "pre-commit": [
     "clean",
@@ -42,9 +42,8 @@
   ],
   "license": "GPL-3.0",
   "devDependencies": {
-    "@jest-runner/electron": "^3.0.0",
+    "@jest-runner/electron": "^3.0.1",
     "electron": "^11.5.0",
-    "electron-mocha": "^10.1.0",
     "electron-packager": "^15.4.0",
     "electron-reloader": "^1.2.1",
     "eslint": "^7.32.0",
@@ -58,7 +57,8 @@
     "stylelint": "^13.13.1",
     "stylelint-config-standard": "^22.0.0",
     "tap-spec": "^5.0.0",
-    "tape": "^5.3.1"
+    "tape": "^5.3.1",
+    "xvfb-maybe": "^0.2.1"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.15.4",
