@@ -14,23 +14,14 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - uses: actions/setup-node@v1
-      - name: '        Startup ChromeDriver and Display in Ubuntu'
-        shell: bash
-        if: matrix.os == 'ubuntu-latest'
-        run: |
-          export DISPLAY=:99
-          sudo apt-get install -y xvfb
-          sudo /usr/bin/Xvfb $DISPLAY -screen 0 1280x1024x24 &
       - name: '        Tests'
-        shell: bash
-        env:
-          DISPLAY: ':99'
         run: |
           npm ci
           npm run test:jest
       - name: '        Tests - Mocha'
-        run: npm run test:mocha
-        shell: bash
+        uses: GabrielBB/xvfb-action@v1
+        with:
+          run: npm test:mocha
       - name: '        Create COV_REPORT'
         run: |
           mkdir COV_REPORT
