@@ -21,7 +21,7 @@ jobs:
       - name: '        Tests - Mocha'
         uses: GabrielBB/xvfb-action@v1
         with:
-          run: npm test:mocha
+          run: npm run test:mocha
       - name: '        Create COV_REPORT'
         run: |
           mkdir COV_REPORT
