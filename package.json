@@ -32,7 +32,7 @@
     "pretest": "npm run clean",
     "start": "electron .",
     "test": "npm-run-all test:*",
-    "test:jest": "jest --runInBand --detectOpenHandles --verbose --colors",
+    "test:jest": "xvfb-maybe --server-args=\"-screen 0 1024x768x24\" --jest --runInBand --detectOpenHandles --verbose --colors",
     "test:mocha": "xvfb-maybe --server-args=\"-screen 0 1024x768x24\" -- nyc --reporter=lcov --reporter=json mocha tests/*"
   },
   "pre-commit": [
