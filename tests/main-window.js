@@ -13,13 +13,14 @@ const weekDay = [ 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Frida
 describe('Application launch', function()
 {
     //  deepcode ignore UseArrowFunction: => will not work on here
-    beforeEach(function()
+    beforeEach(async function()
     {
         this.app = new Application({
             path: electronPath,
             args: [path.join(__dirname, '..')]
         });
-        return this.app.start();
+
+        return await this.app.start();
     });
 
     afterEach(function()
