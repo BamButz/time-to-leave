@@ -33,8 +33,7 @@ describe('Application launch', function()
 
     it('App opens correctly', async function()
     {
-        const { client, browserWindow } = this.app;
-        await client.waitUntilWindowLoaded();
+        const { browserWindow } = this.app;
         const title = await browserWindow.getTitle();
         assert.equal(title, 'Time to Leave');
     });
@@ -42,8 +41,6 @@ describe('Application launch', function()
     it('Calendar opens on Current Month/Year', async function()
     {
         const { client } = this.app;
-        await client.waitUntilWindowLoaded();
-
         const monthYear = await client.$('#month-year');
         const monthYearText = await monthYear.getText();
         const today = new Date();
@@ -53,8 +50,6 @@ describe('Application launch', function()
     it('Change to Day View', async function()
     {
         const { client } = this.app;
-        await client.waitUntilWindowLoaded();
-
         const switchViewBtn = await client.$('#switch-view');
         await switchViewBtn.click();
         const headerDate = await client.$('#header-date');
@@ -66,8 +61,6 @@ describe('Application launch', function()
     it('Calendar change to previous Month', async function()
     {
         const { client } = this.app;
-        await client.waitUntilWindowLoaded();
-
         const prevMonth = await client.$('#prev-month');
         prevMonth.click();
         const monthYear = await client.$('#month-year');
@@ -80,8 +73,6 @@ describe('Application launch', function()
     it('Calendar change to next Month', async function()
     {
         const { client } = this.app;
-        await client.waitUntilWindowLoaded();
-
         const nextMonth = await client.$('#next-month');
         nextMonth.click();
         const monthYear = await client.$('#month-year');
@@ -94,7 +85,6 @@ describe('Application launch', function()
     it('Calendar change to pervious Day', async function()
     {
         const { client } = this.app;
-        await client.waitUntilWindowLoaded();
         const switchViewBtn = await client.$('#switch-view');
         await switchViewBtn.click();
         const prevDay = await client.$('#prev-day');
@@ -109,7 +99,6 @@ describe('Application launch', function()
     it('Calendar change to next Day', async function()
     {
         const { client } = this.app;
-        await client.waitUntilWindowLoaded();
         const switchViewBtn = await client.$('#switch-view');
         await switchViewBtn.click();
         const nextDay = await client.$('#next-day');
