@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - main
+      - issue-653
   pull_request:
 jobs:
   'Checking':
@@ -43,10 +44,3 @@ jobs:
       - name: '        Copy mocha results'
         run: |
             cp coverage/coverage-final.json COV_REPORT/coverage-final-mocha.json
-      - name: '        CodeCov'
-        uses: codecov/codecov-action@v2
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          files: COV_REPORT/coverage-final-jest.json
-          name: codecov-${{ matrix.os }}
-          verbose: true
